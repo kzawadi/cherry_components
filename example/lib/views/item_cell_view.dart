@@ -17,7 +17,7 @@ class ItemCellView extends StatelessWidget {
               builder: (context) => ItemCell(
                 icon: Icons.location_city,
                 text: 'Lorem ipsum',
-                onTap: () => Scaffold.of(context).showSnackBar(
+                onTap: () => ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Lorem ipsum'),
                   ),

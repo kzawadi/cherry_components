@@ -8,7 +8,7 @@ class DialogRoundView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FlatButton(
+          MaterialButton(
             child: Text('Center rounded dialog'),
             onPressed: () => showRoundDialog(
               context: context,
@@ -20,7 +20,7 @@ class DialogRoundView extends StatelessWidget {
               ],
             ),
           ),
-          FlatButton(
+          MaterialButton(
             child: Text('Bottom rounded dialog'),
             onPressed: () => showBottomRoundDialog(
               context: context,
@@ -32,7 +32,7 @@ class DialogRoundView extends StatelessWidget {
               ],
             ),
           ),
-          FlatButton(
+          MaterialButton(
             child: Text('Center rounded dialog with actions'),
             onPressed: () => showRoundDialog(
               context: context,
@@ -60,7 +60,7 @@ class DialogRoundView extends StatelessWidget {
               ],
             ),
           ),
-          FlatButton(
+          MaterialButton(
             child: Text('Bottom rounded dialog with actions'),
             onPressed: () => showBottomRoundDialog(
               context: context,
