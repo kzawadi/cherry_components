@@ -8,7 +8,7 @@ class HeaderText extends StatelessWidget {
 
   const HeaderText(
     this.text, {
-    Key key,
+    Key? key,
     this.head = false,
   }) : super(key: key);
 
@@ -22,8 +22,8 @@ class HeaderText extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.bodyText2.copyWith(
-              color: Theme.of(context).accentColor,
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
       ),

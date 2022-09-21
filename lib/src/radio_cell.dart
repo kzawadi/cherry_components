@@ -10,11 +10,11 @@ class RadioCell<T> extends StatelessWidget {
   final ValueChanged<T> onChanged;
 
   const RadioCell({
-    Key key,
-    @required this.title,
-    @required this.groupValue,
-    @required this.value,
-    @required this.onChanged,
+    Key? key,
+    required this.title,
+    required this.groupValue,
+    required this.value,
+    required this.onChanged,
   }) : super(key: key);
 
   bool get _isChecked => groupValue == value;
@@ -25,16 +25,17 @@ class RadioCell<T> extends StatelessWidget {
       onTap: () => onChanged(value),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        color:
-            _isChecked ? Theme.of(context).accentColor.withOpacity(0.24) : null,
+        color: _isChecked
+            ? Theme.of(context).colorScheme.secondary.withOpacity(0.24)
+            : null,
         child: Row(
           children: [
             Icon(
               _isChecked ? Icons.check_circle : Icons.panorama_fish_eye,
               size: _kRadioSize,
               color: _isChecked
-                  ? Theme.of(context).accentColor
-                  : Theme.of(context).textTheme.caption.color,
+                  ? Theme.of(context).colorScheme.secondary
+                  : Theme.of(context).textTheme.caption?.color,
             ),
             Separator.spacer(Space.large),
             Text(

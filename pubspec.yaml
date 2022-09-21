@@ -1,10 +1,10 @@
 name: cherry_components
 description: Collection of fresh UI components.
 version: 0.3.1+1
-homepage: https://github.com/jesusrp98/cherry_components
+# homepage: https://github.com/jesusrp98/cherry_components
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:

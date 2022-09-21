@@ -23,7 +23,7 @@ class Separator {
   /// Adds a [Gap] widget between all children inside the [children] list.
   static List<Widget> spaceChildren({
     double space = Space.medium,
-    @required List<Widget> children,
+    required List<Widget> children,
   }) {
     return children.separate(space);
   }
@@ -31,8 +31,8 @@ class Separator {
   /// Divider with height 0, as thin as a piece of paper.
   static Widget divider({
     double indent = 0,
-    double endIndent,
-    double thickness,
+    double? endIndent,
+    double? thickness,
   }) {
     return Divider(height: 0, indent: indent);
   }

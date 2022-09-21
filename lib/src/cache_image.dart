@@ -12,7 +12,7 @@ class CacheImage extends StatelessWidget {
 
   const CacheImage(
     this.url, {
-    Key key,
+    Key? key,
     this.fit = BoxFit.cover,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class CacheImage extends StatelessWidget {
         errorWidget: (context, url, error) => Icon(
           Icons.image,
           size: 40,
-          color: Theme.of(context).textTheme.caption.color,
+          color: Theme.of(context).textTheme.caption!.color,
         ),
         fadeInDuration: Duration(milliseconds: 200),
         fit: fit,

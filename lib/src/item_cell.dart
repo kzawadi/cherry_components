@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 class ItemCell extends StatelessWidget {
   final IconData icon;
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final TextOverflow textOverflow;
   final int maxLines;
 
   const ItemCell({
-    Key key,
-    @required this.icon,
-    @required this.text,
+    Key? key,
+    required this.icon,
+    required this.text,
     this.textOverflow = TextOverflow.ellipsis,
     this.maxLines = 1,
     this.onTap,
@@ -29,15 +29,15 @@ class ItemCell extends StatelessWidget {
           Icon(
             icon,
             size: 16,
-            color: Theme.of(context).textTheme.caption.color,
+            color: Theme.of(context).textTheme.caption!.color,
           ),
           Separator.spacer(Space.small),
           Flexible(
             child: Text(
               text,
               overflow: textOverflow,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
-                    color: Theme.of(context).textTheme.caption.color,
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Theme.of(context).textTheme.caption!.color,
                     decoration: onTap == null
                         ? TextDecoration.none
                         : TextDecoration.underline,

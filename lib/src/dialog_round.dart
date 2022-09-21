@@ -13,11 +13,11 @@ const kDialogContentPadding = const EdgeInsets.symmetric(horizontal: 20);
 
 /// Function that builds a centered-rounded dialog. It contains a title, with a
 /// predefined text style, and a varietude of children.
-Future<T> showRoundDialog<T>({
-  @required BuildContext context,
-  @required String title,
-  @required List<Widget> children,
-  List<DialogAction> actions,
+Future<T?> showRoundDialog<T>({
+  required BuildContext context,
+  required String title,
+  required List<Widget> children,
+  List<DialogAction>? actions,
   bool barrierDismissible = true,
   Color barrierColor = Colors.black54,
   EdgeInsets padding = kDialogContentPadding,
@@ -45,11 +45,11 @@ Future<T> showRoundDialog<T>({
 
 /// Function that builds a bottom-rounded dialog. It contains a title, with a
 /// predefined text style, and a varietude of children.
-Future<T> showBottomRoundDialog<T>({
-  @required BuildContext context,
-  @required String title,
-  @required List<Widget> children,
-  List<DialogAction> actions,
+Future<T?> showBottomRoundDialog<T>({
+  required BuildContext context,
+  required String title,
+  required List<Widget> children,
+  List<DialogAction>? actions,
   bool barrierDismissible = true,
   Color barrierColor = Colors.black54,
   bool enableDrag = true,
@@ -81,15 +81,15 @@ class _RoundDialog extends StatelessWidget {
   final String title;
   final List<Widget> children;
   final bool isBottomDialog;
-  final List<DialogAction> actions;
-  final EdgeInsets padding;
+  final List<DialogAction>? actions;
+  final EdgeInsets? padding;
 
   factory _RoundDialog.center({
-    Key key,
-    @required String title,
-    @required List<Widget> children,
-    List<DialogAction> actions,
-    EdgeInsets padding,
+    Key? key,
+    required String title,
+    required List<Widget> children,
+    List<DialogAction>? actions,
+    EdgeInsets? padding,
   }) {
     return _RoundDialog._(
       key: key,
@@ -102,11 +102,11 @@ class _RoundDialog extends StatelessWidget {
   }
 
   factory _RoundDialog.bottom({
-    Key key,
-    @required String title,
-    @required List<Widget> children,
-    List<DialogAction> actions,
-    EdgeInsets padding,
+    Key? key,
+    required String title,
+    required List<Widget> children,
+    List<DialogAction>? actions,
+    EdgeInsets? padding,
   }) {
     return _RoundDialog._(
       key: key,
@@ -119,9 +119,9 @@ class _RoundDialog extends StatelessWidget {
   }
 
   const _RoundDialog._({
-    Key key,
-    this.title,
-    this.children,
+    Key? key,
+    required this.title,
+    required this.children,
     this.isBottomDialog = false,
     this.actions,
     this.padding,
@@ -147,7 +147,7 @@ class _RoundDialog extends StatelessWidget {
                   title.toUpperCase(),
                   style: Theme.of(context)
                       .textTheme
-                      .headline6
+                      .headline6!
                       .copyWith(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -165,32 +165,36 @@ class _RoundDialog extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      for (final action in actions)
+                      for (final action in actions!)
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton(
                             style: Theme.of(context).brightness ==
                                     Brightness.light
                                 ? OutlinedButton.styleFrom(
+                                    foregroundColor:
+                                        action.type == DialogActionType.primary
+                                            ? Theme.of(context)
+                                                .textTheme
+                                                .headline6!
+                                                .color
+                                            : action.type ==
+                                                    DialogActionType.secondary
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary
+                                                : Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(
                                             kDialogActionButtonRadius),
                                       ),
                                     ),
-                                    primary:
-                                        action.type == DialogActionType.primary
-                                            ? Theme.of(context)
-                                                .accentTextTheme
-                                                .headline6
-                                                .color
-                                            : action.type ==
-                                                    DialogActionType.secondary
-                                                ? Theme.of(context).accentColor
-                                                : Colors.white,
                                     backgroundColor:
                                         action.type == DialogActionType.primary
-                                            ? Theme.of(context).accentColor
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .secondary
                                             : action.type ==
                                                     DialogActionType.secondary
                                                 ? null
@@ -199,22 +203,22 @@ class _RoundDialog extends StatelessWidget {
                                         Theme.of(context).textTheme.subtitle1,
                                   )
                                 : OutlinedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            kDialogActionButtonRadius),
-                                      ),
-                                    ),
-                                    primary:
+                                    foregroundColor:
                                         action.type == DialogActionType.primary
                                             ? Colors.black
                                             : action.type ==
                                                     DialogActionType.secondary
                                                 ? Theme.of(context)
                                                     .textTheme
-                                                    .caption
+                                                    .caption!
                                                     .color
                                                 : Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            kDialogActionButtonRadius),
+                                      ),
+                                    ),
                                     backgroundColor:
                                         action.type == DialogActionType.primary
                                             ? Colors.white
@@ -224,7 +228,7 @@ class _RoundDialog extends StatelessWidget {
                                                 : Colors.red,
                                     textStyle: Theme.of(context)
                                         .textTheme
-                                        .subtitle1
+                                        .subtitle1!
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
                             child: Text(action.title),
@@ -253,9 +257,8 @@ class DialogAction {
   final DialogActionType type;
 
   const DialogAction({
-    @required this.title,
-    this.onTap,
+    required this.title,
+    required this.onTap,
     this.type = DialogActionType.primary,
-  })  : assert(title != null),
-        assert(type != null);
+  });
 }
