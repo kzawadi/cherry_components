@@ -4,6 +4,8 @@ import 'package:gap/gap.dart';
 /// Default space values that can be used on a [Separator] generated object.
 class Space {
   static const superLarge = 24.0;
+  static const superLargeXL = 50.0;
+  static const superLargeXXL = 100.0;
   static const large = 16.0;
 
   static const medium = 12.0;
